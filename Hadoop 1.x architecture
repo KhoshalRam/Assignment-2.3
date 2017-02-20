@@ -1,0 +1,73 @@
+Hadoop 1.x architecture:
+  ->Apache Hadoop 1.x or earlier versions are using the following Hadoop architecture. It is a is a High-level Architecture. 
+    Hadoop common module is a Hadoop Base API for all components.
+  
+  ->HDFS stands for Hadoop Distributed File System. It is also known as HDFS V1 as it is a part of Hadoop 1.x.
+    It is used as a Distributed Storage System in Hadoop Architecture.
+  
+  ->MapReduce is a batch processing Data Processing Module. It is built by following Google's MapReduce Algorithm.
+    It is also known as "MR V1" or Classic MapReduce as it is the part of the Hadoop 1.x.
+    
+  ->Remaining all Hadoop Ecosystem components work on top of these two major components: HDFS and MapReduce.
+    
+    
+  Hadoop 1.x Major Components:
+  -> Hadoop 1.x Major Components components are: HDFS and MapReduce. They are also known as "Two Pillars" of Hadoop 1.x.
+    
+   
+  HDFS: 
+      Hadoop is a Hadoop Distributed File System, where our Big Data is stored using Commodity Hardware. It
+      is designed to work with Large datasets with default block of size 64MB which can later be changed as per
+      our project requirements.
+      
+  
+  HDFS component is further divided into two sub components:
+    1. Name Node:
+            Name node is placed in Master Node. It is used to stored Meta Data about data nodes like "How many blocks are
+            stored in Data Nodes?", "Which data nodes have data, slave node details, data nodes locations, timestamps etc".
+    
+    2. Data Node:
+            Data Nodes are places in Slave Nodes. It is used to store out Application's actual Data. It stores data
+            in Data slots of size 64MB by default.
+            
+  MAPREDUCE:  
+     MapReduce is Distributed Data Processing or Batch Processing Programming Model like HDFS. MapReduce compoents
+     is again divided into two sub-components:
+     
+     1. Job Tracker:
+        Job Tracker is used to assign MapReduce Tasks to Task Trackers in the cluster of Nodes. Sometimes, it reassigns
+        same tasks to other Task Trackers as previous Task Trackers are failed or shutdown scenarios. It maintains all the 
+        Task trackers like Up/running, failed, recovered etc.
+     2. Task Tracker:
+        Task tracker executes the tasks which are assigned by Job trackers and sends the status of those tasks 
+        to Job tracker. 
+        
+        
+  How Hadoop 1.x Major Components work?
+    Hadoop 1.x components follows the architecture to interact with each other and to work parallel in a reliable and 
+    fault-tolerant manner. 
+    
+    -> Both Master Node and Slave Nodes contain two Hadoop components:
+       + HDFS compnent
+       + MapReduce Component
+    -> Master Node's HDFS components is also called as "Name Node".
+    -> Slave Node's HDFS component is also called as "DataNode".
+    -> Master Node's Name Node component is used to store Meta Data. 
+    -> Slave Node's Data Node component is used to store actual our application Big data.
+    -> HDFS stores data by using 64MB size of data slots or "Data Blocks".
+    -> Master Node's Mapreduce component is also known as Job tracker.
+    -> Slave Node's Mapreduce components is also called as Task tracker.
+    -> Master Node's Job tracker will take care assigning tasks to Task Trackers and receiving results from them.
+    -> Slave Node's MapReduce component "Task Tracker" contains two Mapreduce Tasks: 1) Map Task, 2) Reduce Task
+    -> Slave node's Task tracker actually performs Client's tasks by using MapReduce Batch Processing Model.
+    -> Master Node is a Primary Node to take care of all remaining slave nodes.
+    
+  Hadoop 1.x Architecture Description 
+    -> Clients submit their work to Hadoop system.
+    -> When Hadoop system receives a client request, first it is received by a master Node.
+    -> Master Node's Mapreduce component "Job Tracker" is responsible for receiving Client Work and divides into
+       manageable independant tasks and assign them to task trackers.
+    -> Slave Node's Mapreduce components "task Tracker: and perform those tasks by using Mapreduce components.
+    -> Once all task trackers fininshed their job. Job trackers takes those results and combines them into final result..
+    -> Finally Hadoop System will send that final reult to the client.
+    
